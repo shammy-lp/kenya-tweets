@@ -104,6 +104,34 @@ The top user location is Nairobi, Kenya, appearing over 2,900 times, with variat
 
 ![image](https://github.com/user-attachments/assets/a0de4e75-4805-4702-93b2-612c1b84e3e5)
 
+### Most frequent tweets in word cloud 
+Tweets frequently mention names and political figures such as Uhuru Kenyatta, Raila Odinga, William Ruto, and Martha Koome. Other top terms include president, deputy, justice, court, government, and bbi. This indicates that conversations are centered around national leadership, governance, and political events, which strongly aligns with our project’s focus.
+
+![image](https://github.com/user-attachments/assets/fb1cc46c-aca1-4071-bd3d-6957f90da973)
+
+### Bigram and Trigram
+The top bigrams include uhuru kenyatta, president uhuru, william ruto, raila odinga, and deputy president, while the top trigrams are president uhuru kenyatta, deputy president william, state house kenya, and justice martha koome. This shows that tweets often follow structured formats combining titles and names, reinforcing the relevance of using n-grams and embeddings in modeling.
+
+![image](https://github.com/user-attachments/assets/9a002036-7bde-4e2c-adfd-a377e8c11a4e)
+
+### Top 10 Users by Total Retweets
+
+![image](https://github.com/user-attachments/assets/319f12a7-014d-4ca1-ba62-e0ec73d310c6)
+
+
+# Data Preparation and Preprocessing.
+
+Missing Values: Removed rows with missing tweets or user IDs; imputed or tagged non-critical fields like location as Unknown.
+
+User Location Normalization: Standardized user locations using lowercase, regex cleaning, and basic geolocation mapping.
+
+Tweet Cleaning: Removed URLs, mentions, hashtags, emojis, and special characters; applied lowercasing, tokenization, stopword removal, and optional lemmatization.
+
+Content & Engagement Analysis: Explored frequent topics, hashtags, and engagement trends (likes/retweets) by sentiment and region.
+
+Bigrams & WordClouds: Extracted common word pairs and visualized frequent terms using word clouds to highlight dominant tweet themes.
+
+
 
 
 
