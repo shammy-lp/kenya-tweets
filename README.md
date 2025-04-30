@@ -6,11 +6,14 @@ Timeline: 19th March - 6th May
 # Project By: Foresight Analytica
 ## Group Members
 1.Morgan Abukuse
-2.Dennis Mwania
-3.Linet Patriciah
-4.Precious Kalia
-5.Felista Kiptoo
 
+2.Dennis Mwania
+
+3.Linet Patriciah
+
+4.Precious Kalia
+
+5.Felista Kiptoo
 
 # Introduction 
 ## Project Overview
@@ -63,7 +66,7 @@ Universities and think tanks will gain access to real-time data for studying onl
 Companies like Safaricom and Equity Bank will benefit from a cleaner digital environment, avoiding association with harmful or false content.
 
 # Data Understanding.
-## Column Files
+## Column Description.
 This dataset contains multiple fields that provide rich context for each tweet. Below is a breakdown of what each column means:
 
 | Column              | Description                                                                 |
@@ -85,7 +88,21 @@ This dataset contains multiple fields that provide rich context for each tweet. 
 | `favorites`         | Number of times the tweet has been liked                                   |
 | `is_retweet`        | Whether the tweet is a retweet (True/False)                                |
 
+## Explotary Data Analysis
+### Tweet length distribution.
+Most tweets range from 120 to 145 characters, clustering near the original tweet character limit.This indicates users tend to write concise but full messages, especially in political contexts.
 
+![image](https://github.com/user-attachments/assets/3d2a21c6-65db-4227-afaa-4988ed3c1d61)
+
+### Tweet Volume over time.
+This plot shows how many tweets were posted on each day. Peaks in the plot can reveal peak,rise during important political events, spikes in conversation volume and time periods worth focusing on during analysis
+
+![image](https://github.com/user-attachments/assets/81273b2d-64c3-4622-9ac7-a05ac649d849)
+
+### Top 10 User location
+The top user location is Nairobi, Kenya, appearing over 2,900 times, with variations like Nairobi, Nairobi Kenya, and Kenya | Nairobi also common. Kenya alone appears over 1,300 times. These duplicate entries will require standardization during preprocessing, such as simplifying "Nairobi, Kenya" to "Nairobi" and reconsidering whether to keep country-level entries like "Kenya".
+
+![image](https://github.com/user-attachments/assets/a0de4e75-4805-4702-93b2-612c1b84e3e5)
 
 
 
