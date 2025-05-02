@@ -131,6 +131,85 @@ Content & Engagement Analysis: Explored frequent topics, hashtags, and engagemen
 
 Bigrams & WordClouds: Extracted common word pairs and visualized frequent terms using word clouds to highlight dominant tweet themes.
 
+##  Feature Engineering & Vectorization
+
+In this section, we prepare our features for machine learning models by:
+
+- Merging cleaned tweets with realistic labeled tweets
+- Ensuring no missing values in clean text
+- Vectorizing text using TF-IDF (Term Frequency-Inverse Document Frequency)
+- Splitting data into training and testing sets
+
+
+
+
+## Modeling
+
+In this section, we build and evaluate classification models that can detect hate speech in political tweets.
+
+We will train:
+- **Logistic Regression** (as a simple, fast, and interpretable baseline)
+- **Support Vector Machine (SVM)** (effective in high-dimensional text spaces)
+
+#### Logistic Regression and Support Vector Machine (SVM)
+For binary classification, we first implemented Logistic Regression, a simple yet effective linear model known for its interpretability and ease of implementation. It served as a strong baseline and was trained on X_train and y_train, then evaluated on X_test.
+
+Next, we applied a Support Vector Machine (SVM) using the LinearSVC model, particularly suitable for high-dimensional data such as TF-IDF vectors. The SVM was trained with a balanced class weight to address any class imbalance in the dataset. Predictions were made on the test set for evaluation
+
+
+
+
+### Model Evaluation
+
+In this section, we evaluate the performance of our trained classification models using a range of evaluation metrics on the test set.
+
+Evaluation Metrics:
+1.Accuracy – Overall correctness of predictions.
+
+2.Precision – Proportion of predicted hate tweets that were actually hate.
+
+3.Recall – Proportion of actual hate tweets that were correctly identified.
+
+4.F1-Score – Harmonic mean of precision and recall.
+
+5.Confusion Matrix – Visual summary of prediction performance.
+
+6.ROC Curve and AUC Score – Evaluate the model's ability to distinguish between classes.
+
+#### Models Evaluated:
+- Logistic Regression
+
+- Support Vector Machine (SVM)
+
+ Logistic Regression Evaluation
+Logistic Regression is a linear model and was used as a baseline for binary classification.
+
+![Kenya tweet classifier](Images/H.png)
+
+Results:
+
+- Accuracy: 67.80%
+
+- Precision: 19.22%
+
+- Recall: 39.23%
+
+- F1 Score: 25.79%
+
+ Support Vector Machine (SVM) Evaluation
+SVM is well-suited for high-dimensional text data and was evaluated using the same metrics.
+
+ ![Kenya tweet classifier](Images/I.png)
+ 
+ Results:
+
+- Accuracy: 68.74%
+
+- Precision: 19.52%
+
+- Recall: 38.12%
+
+- F1 Score: 25.82%
 
 
 
