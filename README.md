@@ -212,6 +212,366 @@ SVM is well-suited for high-dimensional text data and was evaluated using the sa
 - Recall: 38.12%
 
 - F1 Score: 25.82%
+### ROC Curve and AUC Score
+The ROC (Receiver Operating Characteristic) curve visualizes the trade-off between True Positive Rate (Recall) and False Positive Rate at various threshold settings.
+
+The AUC (Area Under the Curve) summarizes this curve in a single number:
+
+AUC = 1.0 → Perfect classifier
+
+AUC = 0.5 → No discrimination (random guessing)
+
+Higher AUC → Better overall model performance
+
+
+### ROC-AUC Interpretation
+
+- **Logistic Regression AUC**: 0.5882
+- **SVM AUC**: 0.5743
+
+Both models perform slightly better than random guessing (AUC = 0.5), but still far from ideal.
+
+Logistic Regression has a slightly higher AUC than SVM in this task.
+This suggests that Logistic Regression has marginally better discrimination ability between hate and safe tweets.
+
+**Summary of Findings:**
+
+- Both Logistic Regression and SVM perform similarly across all metrics.
+- Logistic Regression slightly outperforms SVM in AUC score and Recall.
+- However, **both models show low Precision, Recall, and F1-Scores**, meaning that they are **not sufficient for production-grade deployment**.
+
+
+
+**Reference to Production Threshold:**
+
+According to standard production deployment thresholds in machine learning systems (especially sensitive domains like hate speech detection):
+
+- Accuracy should ideally exceed **80%**  
+- F1-Score should be **at least 50% or higher**  
+- Precision and Recall must be balanced to avoid bias
+
+Both Logistic Regression and SVM **fall below these expectations**.
+
+
+
+**Conclusion and Justification for Advanced Modeling:**
+
+Given the current outcomes, it is necessary to move to **more advanced models** that can:
+
+- Capture non-linear relationships
+- Handle feature interactions more effectively
+- Better discriminate subtle patterns in text data
+
+Thus, the next modeling stage will involve:
+- **Random Forest Classifier**
+- **Multinomial Naive Bayes**
+- **XGBoost Classifier**
+
+These models are expected to provide **higher Accuracy, Precision, Recall, and F1-Scores**, aligning better with real-world production deployment standards.
+
+
+## 6.5. Advanced Modeling
+
+Given that Logistic Regression and SVM did not meet production-grade performance thresholds,  
+we now explore more powerful machine learning models that can better handle the complexity of text classification.
+
+Models used:
+- Random Forest Classifier
+- Multinomial Naive Bayes
+- XGBoost Classifier
+
+Each model will be evaluated using:
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Confusion Matrix
+- ROC Curve and AUC Score
+
+These models are more capable of capturing complex patterns, non-linear interactions, and feature importance.
+
+
+###   Improved TF-IDF Vectorization
+
+We use:
+- 1-gram and 2-gram combinations (single words and word pairs)
+- Max 3000 features
+
+This captures richer language patterns like "uhuru kenyatta", "raila odinga", etc.
+
+
+
+
+
+### Random Forest Classifier
+
+Random Forest is an ensemble learning method that builds multiple decision trees and merges their predictions to improve accuracy and prevent overfitting.
+
+Advantages:
+- Handles feature interactions naturally
+- Robust against noise
+- Performs well even with limited data cleaning
+
+We will train a Random Forest with 100 trees, and use class weighting to address class imbalance.
+
+
+
+### Multinomial Naive Bayes
+
+Naive Bayes is a probabilistic classifier that is particularly effective for text classification problems like spam detection or hate speech detection.
+
+Advantages:
+- Very fast and efficient
+- Works well with TF-IDF features
+- Good for small and medium-sized datasets
+
+We will train a Multinomial Naive Bayes model on our TF-IDF vectorized tweets.
+
+
+
+### XGBoost Classifier
+
+XGBoost (Extreme Gradient Boosting) is an advanced boosting algorithm known for its high performance in classification problems.
+
+Advantages:
+- High accuracy
+- Handles missing values and sparse data
+- Efficient computation
+- Widely used in competitions and production systems
+
+We will train an XGBoost Classifier without label encoding issues and set `eval_metric='logloss'`.
+
+
+
+## Evaluation of Advanced Models
+
+In this section, we evaluate the performance of:
+- Random Forest Classifier
+- Multinomial Naive Bayes
+- XGBoost Classifier
+
+We assess models based on:
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Confusion Matrix
+- ROC Curve and AUC Score
+
+
+
+
+### Random Forest Evaluation
+
+**Metrics:**
+- Accuracy: 83.76%
+- Precision: 32.64%
+- Recall: 12.98%
+- F1-Score: 18.58%
+- AUC Score: 0.5951
+
+![image](https://github.com/user-attachments/assets/dec61115-2e3f-4940-bf30-40ea86e5046b)
+
+
+**Confusion Matrix Insights:**
+- 47 hate tweets correctly classified
+- 315 hate tweets missed (false negatives)
+- Some false positives (97 safe tweets misclassified as hate)
+
+Random Forest improves accuracy compared to Logistic Regression and SVM but still struggles with hate speech detection recall.
+
+
+### 6.10 Multinomial Naive Bayes Evaluation
+
+**Metrics:**
+- Accuracy: 86.56%
+- Precision: 74.42%
+- Recall: 8.84%
+- F1-Score: 15.80%
+- AUC Score: 0.5875
+
+![image](https://github.com/user-attachments/assets/24451f05-4a76-4c6d-9b4e-6fbd863b21c2)
+
+
+**Confusion Matrix Insights:**
+- Very few hate tweets correctly classified (only 32)
+- Extremely low recall
+- High precision means that when it predicts hate, it is usually correct.
+
+Naive Bayes tends to be conservative, predicting fewer hate cases but with higher precision.
+
+
+### 6.11  XGBoost Classifier Evaluation
+
+**Metrics:**
+- Accuracy: 86.76%
+- Precision: 84.21%
+- Recall: 8.84%
+- F1-Score: 16.00%
+- AUC Score: 0.5805
+
+![image](https://github.com/user-attachments/assets/98b7bb82-c484-489c-b39b-2f25c2827d42)
+
+
+**Confusion Matrix Insights:**
+- Only 32 hate tweets correctly identified
+- Very low recall but extremely high precision
+- Slightly better balance compared to Naive Bayes
+
+XGBoost achieves the highest precision (84.21%), crucial for production systems aiming to minimize false accusations.
+
+
+### ROC Curve and AUC Score for All Models
+
+We plot ROC Curves for all models and calculate their AUC (Area Under Curve) scores.
+
+- Higher AUC → better model distinguishing between hate and safe tweets
+- AUC = 0.5 → random guess
+- AUC = 1.0 → perfect classifier
+
+<img width="337" alt="ROC interpretation" src="https://github.com/user-attachments/assets/ebf834a3-3969-4c94-9c1c-e2dd50eca935" />
+
+
+
+
+
+All models perform slightly better than random guessing (AUC = 0.5).
+
+Random Forest achieves the highest AUC (0.5951) among the three.
+
+ROC curves show that none of the models are perfect, but improvements are visible compared to simple baselines like Logistic Regression and SVM.
+
+
+
+
+### Model Recommendation for Deployment Based on Final Metrics
+
+After evaluating all models across key metrics (Accuracy, Precision, Recall, F1-Score, AUC), here are the summarized results:
+
+<img width="356" alt="model recommendation" src="https://github.com/user-attachments/assets/e5ed55f5-61d2-4089-bffc-2410c53714bc" />
+
+
+
+### Interpretation:
+
+- **Accuracy**:  
+  - XGBoost (86.76%) and Naive Bayes (86.56%) perform best.
+- **Precision**:  
+  - XGBoost achieves the highest precision (84.21%), meaning when it predicts hate speech, it is often correct.
+- **Recall**:  
+  - All models show low recall (~8.84% - 12.98%), indicating difficulty in catching hate speech, possibly due to imbalanced data.
+- **F1-Score**:  
+  - Random Forest has slightly higher F1-score (18.58%) than others but with much lower precision.
+- **AUC Score**:  
+  - Random Forest has the highest AUC (0.5951), indicating slightly better overall separability.
+
+
+
+### Final Recommendation:
+
+Considering all metrics:
+
+![Kenya tweet classifier](Images/O.png)
+
+Therefore, **we recommend deploying the XGBoost Classifier** for hate speech detection.
+
+
+### Key Justification for Choosing XGBoost:
+
+- It achieves **the highest Precision (84.21%)**, critical for minimizing false accusations of hate speech.
+- It maintains **the highest Accuracy (86.76%)** across the dataset.
+- It offers strong performance even with imbalanced data.
+- XGBoost is efficient, scalable, and widely used in production environments.
+
+---
+
+We will save the trained XGBoost model and prepare for Deployment using Streamlit app.
+
+
+## 7.  Misinformation Detection (Fact-Check Matching)
+
+In this section, we extend the functionality of our hate speech detection system by introducing **misinformation detection**.
+
+The goal is to match incoming tweets against a database of **known false claims** from trusted fact-checking organizations such as PesaCheck and AfricaCheck.
+
+If a tweet is highly similar to a known false claim, we flag it as potential misinformation.
+
+We use a Natural Language Processing (NLP) approach combining:
+- TF-IDF vectorization
+- Cosine similarity measurement
+
+### 7.1 Load Known Fact-Checked Claims
+
+We start by loading a set of manually entered false claims based on realistic Kenyan political misinformation.
+
+Each claim includes:
+- The false claim text
+- The verdict (all False for this exercise)
+- The source (PesaCheck, AfricaCheck)
+
+In the future, this can be expanded by scraping actual claims from trusted websites.
+
+
+
+### 7.2 Preprocess Fact-Check Claims
+
+We apply standard text cleaning techniques to the claims to ensure consistency:
+- Lowercasing
+- Removing URLs, punctuation, special characters
+- Removing English stopwords
+
+This ensures that the TF-IDF vectorization later is meaningful.
+
+
+
+### 7.3  TF-IDF Vectorization
+
+We vectorize:
+- All cleaned tweet texts
+- All cleaned fact-check claims
+
+This converts text into numerical representations based on term frequency-inverse document frequency scores, preparing them for cosine similarity comparison.
+
+
+
+
+
+### 7.4 Compute Cosine Similarity
+
+For each tweet, we compute the cosine similarity with each known false claim.
+
+- A similarity score of 1.0 means identical text
+- A similarity score of 0.0 means completely different text
+
+This allows us to measure how close a tweet is to a known piece of misinformation.
+
+
+### Flagging Tweets as Misinformation
+To identify potential misinformation, we apply a similarity threshold based on comparisons with known false claims.
+Flagging Criteria:
+If a tweet has a similarity score ≥ 0.85 with any known false claim,
+It is flagged as potential misinformation.
+A new binary column misinformation_flag is added to the dataset:
+
+-True → Tweet is flagged as misinformation
+
+-False → Tweet is not flagged
+
+This step helps isolate content that closely resembles verified false information, supporting future filtering, moderation, or reporting strategies.
+
+###  Summary of our Misinformation Detection
+
+- We loaded 5 manually entered false claims from trusted fact-check organizations.
+- Cleaned the text for both tweets and claims.
+- Vectorized text using TF-IDF and computed cosine similarity.
+- Flagged tweets with similarity ≥ 85% to known false claims.
+- Identified tweets that could potentially mislead the public.
+
+This misinformation detection module can be expanded in the future by scraping real claims from sources like PesaCheck and AfricaCheck, updating the detection system dynamically.
+
+This functionality significantly strengthens the practical impact of the hate speech detection system.
+
+
 
 
 
