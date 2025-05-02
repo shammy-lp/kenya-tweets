@@ -470,7 +470,8 @@ After evaluating all models across key metrics (Accuracy, Precision, Recall, F1-
 
 Considering all metrics:
 
-![Kenya tweet classifier](Images/O.png)
+<img width="246" alt="Final Recommendation" src="https://github.com/user-attachments/assets/95204d1e-2265-4921-8e8c-ec311abafad5" />
+
 
 Therefore, **we recommend deploying the XGBoost Classifier** for hate speech detection.
 
