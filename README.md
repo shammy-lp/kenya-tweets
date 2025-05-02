@@ -328,7 +328,6 @@ Advantages:
 We will train a Multinomial Naive Bayes model on our TF-IDF vectorized tweets.
 
 
-
 ### XGBoost Classifier
 
 XGBoost (Extreme Gradient Boosting) is an advanced boosting algorithm known for its high performance in classification problems.
