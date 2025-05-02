@@ -184,7 +184,8 @@ Evaluation Metrics:
  Logistic Regression Evaluation
 Logistic Regression is a linear model and was used as a baseline for binary classification.
 
-![Kenya tweet classifier](Images/H.png)
+![image](https://github.com/user-attachments/assets/7990f7c7-022c-4e7e-acfe-b34fb02147a6)
+
 
 Results:
 
@@ -199,7 +200,8 @@ Results:
  Support Vector Machine (SVM) Evaluation
 SVM is well-suited for high-dimensional text data and was evaluated using the same metrics.
 
- ![Kenya tweet classifier](Images/I.png)
+ ![image](https://github.com/user-attachments/assets/4f8bb8a8-f4a4-4c29-bf50-274b3d53f749)
+
  
  Results:
 
