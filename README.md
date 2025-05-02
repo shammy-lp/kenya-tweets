@@ -131,39 +131,25 @@ Content & Engagement Analysis: Explored frequent topics, hashtags, and engagemen
 
 Bigrams & WordClouds: Extracted common word pairs and visualized frequent terms using word clouds to highlight dominant tweet themes.
 
-##  Feature Engineering & Vectorization
+# Feature Engineering & Vectorization
 
-In this section, we prepare our features for machine learning models by:
-
+We prepare our features for machine learning models by:
 - Merging cleaned tweets with realistic labeled tweets
 - Ensuring no missing values in clean text
 - Vectorizing text using TF-IDF (Term Frequency-Inverse Document Frequency)
 - Splitting data into training and testing sets
 
+# Modeling
+We trained the following models:
 
-
-
-## Modeling
-
-In this section, we build and evaluate classification models that can detect hate speech in political tweets.
-
-We will train:
-- **Logistic Regression** (as a simple, fast, and interpretable baseline)
-- **Support Vector Machine (SVM)** (effective in high-dimensional text spaces)
-
-#### Logistic Regression and Support Vector Machine (SVM)
+**1.Logistic Regression** ( baseline model)
 For binary classification, we first implemented Logistic Regression, a simple yet effective linear model known for its interpretability and ease of implementation. It served as a strong baseline and was trained on X_train and y_train, then evaluated on X_test.
 
+**2.Support Vector Machine (SVM)** (effective in high-dimensional text spaces)
 Next, we applied a Support Vector Machine (SVM) using the LinearSVC model, particularly suitable for high-dimensional data such as TF-IDF vectors. The SVM was trained with a balanced class weight to address any class imbalance in the dataset. Predictions were made on the test set for evaluation
 
-
-
-
-### Model Evaluation
-
-In this section, we evaluate the performance of our trained classification models using a range of evaluation metrics on the test set.
-
-Evaluation Metrics:
+# **Model Evaluation**
+## **Evaluation Metrics:**
 1.Accuracy – Overall correctness of predictions.
 
 2.Precision – Proportion of predicted hate tweets that were actually hate.
@@ -176,46 +162,33 @@ Evaluation Metrics:
 
 6.ROC Curve and AUC Score – Evaluate the model's ability to distinguish between classes.
 
-#### Models Evaluated:
-- Logistic Regression
+## **Models Evaluated:**
 
-- Support Vector Machine (SVM)
-
- Logistic Regression Evaluation
+### 1.Logistic Regression Evaluation
 Logistic Regression is a linear model and was used as a baseline for binary classification.
 
 ![image](https://github.com/user-attachments/assets/7990f7c7-022c-4e7e-acfe-b34fb02147a6)
 
-
 Results:
-
 - Accuracy: 67.80%
-
 - Precision: 19.22%
-
 - Recall: 39.23%
-
 - F1 Score: 25.79%
 
- Support Vector Machine (SVM) Evaluation
+### 2.Support Vector Machine (SVM) Evaluation
 SVM is well-suited for high-dimensional text data and was evaluated using the same metrics.
 
  ![image](https://github.com/user-attachments/assets/4f8bb8a8-f4a4-4c29-bf50-274b3d53f749)
 
- 
  Results:
 
 - Accuracy: 68.74%
-
 - Precision: 19.52%
-
 - Recall: 38.12%
-
 - F1 Score: 25.82%
-### ROC Curve and AUC Score
-The ROC (Receiver Operating Characteristic) curve visualizes the trade-off between True Positive Rate (Recall) and False Positive Rate at various threshold settings.
-
-The AUC (Area Under the Curve) summarizes this curve in a single number:
+  
+#### ROC Curve and AUC Score
+The ROC (Receiver Operating Characteristic) curve visualizes the trade-off between True Positive Rate (Recall) and False Positive Rate at various threshold settings.The AUC (Area Under the Curve) summarizes this curve in a single number:
 
 AUC = 1.0 → Perfect classifier
 
@@ -223,41 +196,31 @@ AUC = 0.5 → No discrimination (random guessing)
 
 Higher AUC → Better overall model performance
 
-
-### ROC-AUC Interpretation
+#### ROC-AUC Interpretation
 
 - **Logistic Regression AUC**: 0.5882
 - **SVM AUC**: 0.5743
 
-Both models perform slightly better than random guessing (AUC = 0.5), but still far from ideal.
+Both models perform slightly better than random guessing (AUC = 0.5), but still far from ideal.Logistic Regression has a slightly higher AUC than SVM in this task.This suggests that Logistic Regression has marginally better discrimination ability between hate and safe tweets.
 
-Logistic Regression has a slightly higher AUC than SVM in this task.
-This suggests that Logistic Regression has marginally better discrimination ability between hate and safe tweets.
-
-**Summary of Findings:**
+## **Summary of Findings:**
 
 - Both Logistic Regression and SVM perform similarly across all metrics.
 - Logistic Regression slightly outperforms SVM in AUC score and Recall.
 - However, **both models show low Precision, Recall, and F1-Scores**, meaning that they are **not sufficient for production-grade deployment**.
 
+### **Reference to Production Threshold:**
 
-
-**Reference to Production Threshold:**
-
-According to standard production deployment thresholds in machine learning systems (especially sensitive domains like hate speech detection):
-
+According to standard production deployment thresholds in machine learning systems (especially sensitive domains like hate speech detection);
 - Accuracy should ideally exceed **80%**  
 - F1-Score should be **at least 50% or higher**  
 - Precision and Recall must be balanced to avoid bias
 
 Both Logistic Regression and SVM **fall below these expectations**.
 
-
-
-**Conclusion and Justification for Advanced Modeling:**
+### **Conclusion for Advanced Modeling:**
 
 Given the current outcomes, it is necessary to move to **more advanced models** that can:
-
 - Capture non-linear relationships
 - Handle feature interactions more effectively
 - Better discriminate subtle patterns in text data
@@ -269,8 +232,7 @@ Thus, the next modeling stage will involve:
 
 These models are expected to provide **higher Accuracy, Precision, Recall, and F1-Scores**, aligning better with real-world production deployment standards.
 
-
-## 6.5. Advanced Modeling
+# Advanced Modeling
 
 Given that Logistic Regression and SVM did not meet production-grade performance thresholds,  
 we now explore more powerful machine learning models that can better handle the complexity of text classification.
@@ -291,17 +253,13 @@ Each model will be evaluated using:
 These models are more capable of capturing complex patterns, non-linear interactions, and feature importance.
 
 
-###   Improved TF-IDF Vectorization
+## Improved TF-IDF Vectorization
 
 We use:
 - 1-gram and 2-gram combinations (single words and word pairs)
 - Max 3000 features
 
 This captures richer language patterns like "uhuru kenyatta", "raila odinga", etc.
-
-
-
-
 
 ### Random Forest Classifier
 
