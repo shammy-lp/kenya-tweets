@@ -203,7 +203,7 @@ Higher AUC → Better overall model performance
 
 Both models perform slightly better than random guessing (AUC = 0.5), but still far from ideal.Logistic Regression has a slightly higher AUC than SVM in this task.This suggests that Logistic Regression has marginally better discrimination ability between hate and safe tweets.
 
-## **Summary of Findings:**
+### **Summary of Findings:**
 
 - Both Logistic Regression and SVM perform similarly across all metrics.
 - Logistic Regression slightly outperforms SVM in AUC score and Recall.
@@ -338,7 +338,7 @@ We assess models based on:
 Random Forest improves accuracy compared to Logistic Regression and SVM but still struggles with hate speech detection recall.
 
 
-## Multinomial Naive Bayes Evaluation
+### Multinomial Naive Bayes Evaluation
 
 **Metrics:**
 - Accuracy: 86.56%
@@ -401,7 +401,7 @@ ROC curves show that none of the models are perfect, but improvements are visibl
 
 
 
-## Model Recommendation for Deployment Based on Final Metrics
+# Model Recommendation for Deployment Based on Final Metrics
 
 After evaluating all models across key metrics (Accuracy, Precision, Recall, F1-Score, AUC), here are the summarized results:
 
