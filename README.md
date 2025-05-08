@@ -300,7 +300,7 @@ We will train an XGBoost Classifier without label encoding issues and set `eval_
 
 
 
-## Evaluation of Advanced Models
+### Evaluation of Advanced Models
 
 In this section, we evaluate the performance of:
 - Random Forest Classifier
@@ -338,7 +338,7 @@ We assess models based on:
 Random Forest improves accuracy compared to Logistic Regression and SVM but still struggles with hate speech detection recall.
 
 
-### 6.10 Multinomial Naive Bayes Evaluation
+## Multinomial Naive Bayes Evaluation
 
 **Metrics:**
 - Accuracy: 86.56%
@@ -358,7 +358,7 @@ Random Forest improves accuracy compared to Logistic Regression and SVM but stil
 Naive Bayes tends to be conservative, predicting fewer hate cases but with higher precision.
 
 
-### 6.11  XGBoost Classifier Evaluation
+###  XGBoost Classifier Evaluation
 
 **Metrics:**
 - Accuracy: 86.76%
@@ -401,12 +401,11 @@ ROC curves show that none of the models are perfect, but improvements are visibl
 
 
 
-### Model Recommendation for Deployment Based on Final Metrics
+## Model Recommendation for Deployment Based on Final Metrics
 
 After evaluating all models across key metrics (Accuracy, Precision, Recall, F1-Score, AUC), here are the summarized results:
 
 <img width="356" alt="model recommendation" src="https://github.com/user-attachments/assets/e5ed55f5-61d2-4089-bffc-2410c53714bc" />
-
 
 
 ### Interpretation:
@@ -446,7 +445,7 @@ Therefore, **we recommend deploying the XGBoost Classifier** for hate speech det
 We will save the trained XGBoost model and prepare for Deployment using Streamlit app.
 
 
-## 7.  Misinformation Detection (Fact-Check Matching)
+#  Misinformation Detection (Fact-Check Matching)
 
 In this section, we extend the functionality of our hate speech detection system by introducing **misinformation detection**.
 
@@ -458,7 +457,7 @@ We use a Natural Language Processing (NLP) approach combining:
 - TF-IDF vectorization
 - Cosine similarity measurement
 
-### 7.1 Load Known Fact-Checked Claims
+## Load Known Fact-Checked Claims
 
 We start by loading a set of manually entered false claims based on realistic Kenyan political misinformation.
 
@@ -471,7 +470,7 @@ In the future, this can be expanded by scraping actual claims from trusted websi
 
 
 
-### 7.2 Preprocess Fact-Check Claims
+## Preprocess Fact-Check Claims
 
 We apply standard text cleaning techniques to the claims to ensure consistency:
 - Lowercasing
@@ -481,8 +480,7 @@ We apply standard text cleaning techniques to the claims to ensure consistency:
 This ensures that the TF-IDF vectorization later is meaningful.
 
 
-
-### 7.3  TF-IDF Vectorization
+##  TF-IDF Vectorization
 
 We vectorize:
 - All cleaned tweet texts
@@ -492,9 +490,7 @@ This converts text into numerical representations based on term frequency-invers
 
 
 
-
-
-### 7.4 Compute Cosine Similarity
+## Compute Cosine Similarity
 
 For each tweet, we compute the cosine similarity with each known false claim.
 
@@ -504,7 +500,7 @@ For each tweet, we compute the cosine similarity with each known false claim.
 This allows us to measure how close a tweet is to a known piece of misinformation.
 
 
-### Flagging Tweets as Misinformation
+## Flagging Tweets as Misinformation
 To identify potential misinformation, we apply a similarity threshold based on comparisons with known false claims.
 Flagging Criteria:
 If a tweet has a similarity score ≥ 0.85 with any known false claim,
