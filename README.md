@@ -253,7 +253,7 @@ Each model will be evaluated using:
 These models are more capable of capturing complex patterns, non-linear interactions, and feature importance.
 
 
-## Improved TF-IDF Vectorization
+### Improved TF-IDF Vectorization
 
 We use:
 - 1-gram and 2-gram combinations (single words and word pairs)
